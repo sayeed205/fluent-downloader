@@ -2,7 +2,6 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use tauri::Manager;
-use tauri::{CustomMenuItem, Menu, MenuItem, Submenu};
 use window_vibrancy::apply_mica;
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
@@ -15,6 +14,9 @@ fn main() {
     tauri::Builder::default()
         .setup(|app: &mut tauri::App| {
             let window = app.get_window("main").unwrap();
+
+            let theme = window.theme().unwrap();
+            println!("Theme: {:?}", theme);
 
             #[cfg(target_os = "windows")]
             apply_mica(&window, Some(true)).expect("Failed to apply mica");

@@ -1,3 +1,11 @@
 {
-    "cSpell.words": ["fullscreen", "icns", "tauri", "unmaximize", "unminimize"]
+    "cSpell.words": [
+        "clsx",
+        "fluentui",
+        "fullscreen",
+        "icns",
+        "tauri",
+        "unmaximize",
+        "unminimize"
+    ]
 }

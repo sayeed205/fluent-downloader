@@ -2,16 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --foreground-rgb: 0, 0, 0;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
     :root {
-        --foreground-rgb: 255, 255, 255;
+        --foreground: #000;
+        --background: #fff;
+
+        --primary: #1d4ed8;
+
+        --destructive: #f11515;
+    }
+
+    .dark {
+        --foreground: #fff;
+        --background: #000;
+
+        --primary: #2563eb;
+
+        --destructive: #f87171;
     }
 }
-
 body {
     color: rgb(var(--foreground-rgb));
     background: transparent;
