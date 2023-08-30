@@ -25,7 +25,7 @@ const controlButtons = [
 export default function WindowBar() {
     const [isMaximized, setIsMaximized] = useState<boolean>(false);
 
-    const handleClick = async (name: string) => {
+    const handleClick = (name: string) => {
         switch (name) {
             case 'minimize':
                 appWindow.minimize();
@@ -44,7 +44,7 @@ export default function WindowBar() {
 
     return (
         <div
-            className='h-11 text-background select-none flex left-0 right-0 justify-end'
+            className='h-11 select-none flex left-0 right-0 justify-end'
             data-tauri-drag-region
         >
             {controlButtons.map(button => (

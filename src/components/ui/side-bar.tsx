@@ -1,28 +1,78 @@
 'use client';
 
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
 import { useState } from 'react';
 import { Icons } from '../icons';
+import { Button, buttonVariants } from './button';
+
+const sideBarData = [
+    {
+        name: 'Add',
+        icon: <Icons.plus />,
+        link: '/add',
+    },
+    {
+        name: 'Home',
+        icon: <Icons.home />,
+        link: '/',
+    },
+    {
+        name: 'Downloading',
+        icon: <Icons.download />,
+        link: '/downloading',
+    },
+    {
+        name: 'Downloaded',
+        icon: <Icons.check />,
+        link: '/downloaded',
+    },
+];
 
 const SideBar = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     return (
-        <div className={`ease-in-out duration-300 ${isOpen ? 'w-24' : 'w-12'}`}>
-            <div className='flex flex-col pl-3 gap-3 pt-4'>
-                <div className=''>
-                    <Icons.menu onClick={() => setIsOpen(!isOpen)} />
-                </div>
-                <div className=''>
-                    <Icons.home />
-                </div>
-                <div className=''>
-                    <Icons.download />
-                </div>
+        <nav
+            className={`${
+                isOpen ? 'w-96' : 'w-12'
+            } flex flex-col pt-3 ease-in-out duration-300 transition-all`}
+        >
+            <div className='flex flex-col'>
+                <Button
+                    onClick={() => setIsOpen(!isOpen)}
+                    className='pl-2 w-9 items-center flex'
+                    variant='ghost'
+                >
+                    <Icons.menu />
+                </Button>
+                {sideBarData.map(item => (
+                    <Link
+                        href={item.link}
+                        passHref
+                        key={item.name}
+                        className={cn(
+                            'flex pl-2',
+                            buttonVariants({ variant: 'ghost' })
+                        )}
+                    >
+                        {item.icon}
+                        <span
+                            className={`${
+                                isOpen
+                                    ? 'opacity-100 w-full '
+                                    : 'w-0 opacity-0 '
+                            } ease-in-out duration-300 transition-all text-left pl-3`}
+                        >
+                            {item.name}
+                        </span>
+                    </Link>
+                ))}
             </div>
-            <div className='absolute bottom-3'>
+            <Button variant='ghost' className='absolute bottom-3 px-2 w-10'>
                 <Icons.settings />
-            </div>
-        </div>
+            </Button>
+        </nav>
     );
 };
 

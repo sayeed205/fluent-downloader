@@ -1,4 +1,5 @@
 import {
+    Add20Filled,
     ArrowDown20Filled,
     ArrowMaximize20Filled,
     ArrowMinimize20Filled,
@@ -30,4 +31,5 @@ export const Icons = {
     maximize: ArrowMaximize20Filled,
     restore: ArrowMinimize20Filled,
     minimize: Subtract20Filled,
+    plus: Add20Filled,
 };

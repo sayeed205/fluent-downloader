@@ -1,8 +1,10 @@
+'use client';
+
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { Inter } from 'next/font/google';
 
-// import WindowBar from '@/components/ui/window-bar';
+import SideBar from '@/components/ui/side-bar';
 import { cn } from '@/lib/utils';
 import './globals.css';
 
@@ -28,11 +30,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <body
                 className={cn(
                     inter.className,
-                    'h-screen max-h-screen overflow-hidden rounded-3xl'
+                    'h-screen max-h-screen overflow-hidden text-foreground'
                 )}
             >
                 <WindowBar />
-                {children}
+                <div className='flex min-h-screen flex-row pt-4 '>
+                    <SideBar />
+                    <div className='bg-white/5 rounded-tl-lg w-screen h-[calc(100vh-1rem)]'>
+                        {children}
+                    </div>
+                </div>
             </body>
         </html>
     );

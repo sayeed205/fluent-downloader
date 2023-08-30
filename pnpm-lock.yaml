@@ -8,9 +8,15 @@ dependencies:
   '@fluentui/react-icons':
     specifier: 2.0.199
     version: 2.0.199(react@18.2.0)
+  '@hookform/resolvers':
+    specifier: 3.0.0
+    version: 3.0.0(react-hook-form@7.43.9)
   '@radix-ui/react-dropdown-menu':
     specifier: 2.0.4
     version: 2.0.4(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
+  '@radix-ui/react-label':
+    specifier: 2.0.1
+    version: 2.0.1(react-dom@18.2.0)(react@18.2.0)
   '@tauri-apps/api':
     specifier: 1.2.0
     version: 1.2.0
@@ -29,9 +35,15 @@ dependencies:
   react-dom:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
+  react-hook-form:
+    specifier: 7.43.9
+    version: 7.43.9(react@18.2.0)
   tailwind-merge:
     specifier: 1.10.0
     version: 1.10.0
+  zod:
+    specifier: 3.21.4
+    version: 3.21.4
 
 devDependencies:
   '@tauri-apps/cli':
@@ -183,6 +195,14 @@ packages:
     resolution: {integrity: sha512-nhVryiNHhoBt5L93tfDYGoE4KtWvhBvY7y1yR1n6WKpRjasgw3GI2pBwiMiVt68bycnyvXIvcJjJTr0QM22VLQ==}
     dependencies:
       csstype: 3.1.2
+    dev: false
+
+  /@hookform/resolvers@3.0.0(react-hook-form@7.43.9):
+    resolution: {integrity: sha512-SQPefakODpyq25b/phHXDKCdRrEfPcCXV7B4nAa139wE1DxufYbbNAjeo0T04ZXBokRxZ+wD8iA1kkVMa3QwjQ==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.43.9(react@18.2.0)
     dev: false
 
   /@humanwhocodes/config-array@0.11.10:
@@ -474,6 +494,18 @@ packages:
       '@babel/runtime': 7.22.11
       '@radix-ui/react-use-layout-effect': 1.0.0(react@18.2.0)
       react: 18.2.0
+    dev: false
+
+  /@radix-ui/react-label@2.0.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-qcfbS3B8hTYmEO44RNcXB6pegkxRsJIbdxTMu0PEX0Luv5O2DvTIwwVYxQfUwLpM88EL84QRPLOLgwUSApMsLQ==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      '@babel/runtime': 7.22.11
+      '@radix-ui/react-primitive': 1.0.2(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /@radix-ui/react-menu@2.0.4(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0):
@@ -2615,6 +2647,15 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-hook-form@7.43.9(react@18.2.0):
+    resolution: {integrity: sha512-AUDN3Pz2NSeoxQ7Hs6OhQhDr6gtF9YRuutGDwPQqhSUAHJSgGl2VeY3qN19MG0SucpjgDiuMJ4iC5T5uB+eaNQ==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-is@16.13.1:

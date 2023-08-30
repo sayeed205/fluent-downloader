@@ -23,13 +23,30 @@
                 "unmaximize": true,
                 "unminimize": true,
                 "startDragging": true
+            },
+            "shell": {
+                "sidecar": true,
+                "scope": [
+                    { "name": "./bin/yt-dlp", "sidecar": true },
+                    { "name": "./bin/ffmpeg", "sidecar": true },
+                    { "name": "./bin/ffprobe", "sidecar": true },
+                    { "name": "./bin/ffplay", "sidecar": true }
+                ]
+            },
+            "path": {
+                "all": true
             }
         },
         "bundle": {
             "active": true,
             "category": "Productivity",
             "copyright": "",
-            "externalBin": [],
+            "externalBin": [
+                "./bin/yt-dlp",
+                "./bin/ffmpeg",
+                "./bin/ffprobe",
+                "./bin/ffplay"
+            ],
             "icon": [
                 "icons/32x32.png",
                 "icons/128x128.png",
