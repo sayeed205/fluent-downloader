@@ -1,12 +1,16 @@
 import {
     ArrowDown20Filled,
+    ArrowMaximize20Filled,
+    ArrowMinimize20Filled,
     Checkmark20Filled,
     ChevronRight20Filled,
     Circle20Regular,
+    Dismiss20Filled,
     Home20Filled,
     Laptop20Filled,
     Navigation20Filled,
     Settings20Filled,
+    Subtract20Filled,
     WeatherMoon20Filled,
     WeatherSunny20Filled,
 } from '@fluentui/react-icons';
@@ -22,4 +26,8 @@ export const Icons = {
     download: ArrowDown20Filled,
     settings: Settings20Filled,
     menu: Navigation20Filled,
+    close: Dismiss20Filled,
+    maximize: ArrowMaximize20Filled,
+    restore: ArrowMinimize20Filled,
+    minimize: Subtract20Filled,
 };

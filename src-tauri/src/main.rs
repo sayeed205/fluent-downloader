@@ -2,6 +2,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use tauri::Manager;
+use window_shadows::set_shadow;
 use window_vibrancy::apply_mica;
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
@@ -20,6 +21,9 @@ fn main() {
 
             #[cfg(target_os = "windows")]
             apply_mica(&window, Some(true)).expect("Failed to apply mica");
+
+            #[cfg(any(windows, target_os = "windows"))]
+            set_shadow(&window, true).expect("Failed to set shadow");
 
             window.minimize().unwrap();
             window.unminimize().unwrap();

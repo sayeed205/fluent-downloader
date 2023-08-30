@@ -11,6 +11,9 @@ dependencies:
   '@radix-ui/react-dropdown-menu':
     specifier: 2.0.4
     version: 2.0.4(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
+  '@tauri-apps/api':
+    specifier: 1.2.0
+    version: 1.2.0
   class-variance-authority:
     specifier: 0.4.0
     version: 0.4.0(typescript@5.2.2)
@@ -666,6 +669,11 @@ packages:
     resolution: {integrity: sha512-sJ902EfIzn1Fa+qYmjdQqh8tPsoxyBz+8yBKC2HKUxyezKJFwPGOn7pv4WY6QuQW//ySQi5lJjA/ZT9sNWWNTg==}
     dependencies:
       tslib: 2.6.2
+    dev: false
+
+  /@tauri-apps/api@1.2.0:
+    resolution: {integrity: sha512-lsI54KI6HGf7VImuf/T9pnoejfgkNoXveP14pVV7XarrQ46rOejIVJLFqHI9sRReJMGdh2YuCoI3cc/yCWCsrw==}
+    engines: {node: '>= 14.6.0', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
     dev: false
 
   /@tauri-apps/cli-darwin-arm64@1.4.0:
