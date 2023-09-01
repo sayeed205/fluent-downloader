@@ -1,11 +1,11 @@
 'use client';
 
 import { appWindow } from '@tauri-apps/api/window';
-
-import { cn } from '@/lib/utils';
 import { useState } from 'react';
-import { Icons } from '../icons';
-import { buttonVariants } from './button';
+
+import { Icons } from '@/components/icons';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 const controlButtons = [
     {
@@ -44,7 +44,7 @@ export default function WindowBar() {
 
     return (
         <div
-            className='h-11 select-none flex left-0 right-0 justify-end'
+            className='h-7 select-none flex left-0 right-0 justify-end gap-[1px] m-2 '
             data-tauri-drag-region
         >
             {controlButtons.map(button => (
@@ -53,15 +53,7 @@ export default function WindowBar() {
                     className='flex items-center align-middle text-center'
                 >
                     <div
-                        className={cn(
-                            'w-full h-full px-3',
-                            buttonVariants({
-                                variant:
-                                    button.name === 'close'
-                                        ? 'destructive'
-                                        : 'ghost',
-                            })
-                        )}
+                        className={cn(buttonVariants({ variant: 'ghost' }))} // todo)) Need to add bg-red for close button while hovered
                         onClick={() => handleClick(button.name)}
                     >
                         {isMaximized && button.name === 'maximize' ? (

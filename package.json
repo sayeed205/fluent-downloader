@@ -1,38 +1,37 @@
 {
-    "name": "fluent-downloader",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start",
-        "lint": "next lint"
-    },
-    "dependencies": {
-        "@fluentui/react-icons": "2.0.199",
-        "@hookform/resolvers": "3.0.0",
-        "@radix-ui/react-dropdown-menu": "2.0.4",
-        "@radix-ui/react-label": "2.0.1",
-        "@tauri-apps/api": "1.2.0",
-        "class-variance-authority": "0.4.0",
-        "clsx": "1.2.1",
-        "next": "13.4.19",
-        "react": "18.2.0",
-        "react-dom": "18.2.0",
-        "react-hook-form": "7.43.9",
-        "tailwind-merge": "1.10.0",
-        "zod": "3.21.4"
-    },
-    "devDependencies": {
-        "@tauri-apps/cli": "1.4.0",
-        "@types/node": "18.17.12",
-        "@types/react": "18.2.21",
-        "@types/react-dom": "18.2.7",
-        "autoprefixer": "10.4.15",
-        "eslint": "8.48.0",
-        "eslint-config-next": "13.4.19",
-        "postcss": "8.4.28",
-        "tailwindcss": "3.3.3",
-        "typescript": "5.2.2"
-    }
+  "name": "tauri-react",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@fluentui/react-icons": "2.0.199",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "1.0.3",
+    "@tauri-apps/api": "^1.4.0",
+    "class-variance-authority": "0.4.0",
+    "clsx": "1.2.1",
+    "framer-motion": "10.9.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "1.10.0",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.4.0",
+    "@types/node": "18.15.11",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.4",
+    "autoprefixer": "10.4.14",
+    "postcss": "8.4.21",
+    "tailwindcss": "3.2.7",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9"
+  }
 }
