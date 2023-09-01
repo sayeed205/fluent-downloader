@@ -3,6 +3,7 @@
         "clsx",
         "fluentui",
         "fullscreen",
+        "tanstack",
         "TAURI",
         "unmaximize",
         "unminimize"

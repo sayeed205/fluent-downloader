@@ -63,7 +63,11 @@ function App() {
                                 key={tab.name}
                                 value={tab.name}
                                 onClick={() => setActiveTab(tab.name)}
-                                className='py-[7px] px-3'
+                                className={cn(
+                                    'py-[7px] px-3',
+                                    tab.name === 'Settings' &&
+                                        'absolute bottom-4'
+                                )}
                             >
                                 <motion.span
                                     style={{
@@ -75,9 +79,7 @@ function App() {
                                         width: isExpanded ? '285px' : '20px',
                                     }}
                                 >
-                                    <div className='flex self-start flex-row'>
-                                        {tab.icon}
-                                    </div>
+                                    <div className={cn()}>{tab.icon}</div>
                                     <motion.div
                                         animate={{
                                             opacity: isExpanded ? 1 : 0,
@@ -104,7 +106,9 @@ function App() {
                         <TabsContent
                             key={tab.name}
                             value={tab.name}
-                            className='bg-background rounded-tl-lg w-screen h-screen mt-0'
+                            className={cn(
+                                'bg-background rounded-tl-lg w-screen h-screen'
+                            )}
                         >
                             {tab.screen}
                         </TabsContent>

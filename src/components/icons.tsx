@@ -10,6 +10,8 @@ import {
     Home20Filled,
     Laptop20Filled,
     Navigation20Filled,
+    Pause20Filled,
+    Play20Filled,
     Settings20Filled,
     Subtract20Filled,
     WeatherMoon20Filled,
@@ -32,4 +34,6 @@ export const Icons = {
     restore: ArrowMinimize20Filled,
     minimize: Subtract20Filled,
     plus: Add20Filled,
+    pause: Pause20Filled,
+    play: Play20Filled,
 };
