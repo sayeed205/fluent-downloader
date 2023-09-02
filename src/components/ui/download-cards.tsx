@@ -14,7 +14,7 @@ type DownloadProps = {
 
 const DownloadCards = (props: DownloadProps) => {
     return (
-        <div className='bg-background w-[calc(100%-10px)]  align-middle self-center rounded-lg flex justify-between gap-4 px-8 h-28 items-center'>
+        <div className='bg-background w-[calc(100%-1rem)]  align-middle self-center rounded-lg flex justify-between gap-4 px-8 h-28 items-center'>
             <div className='flex w-full flex-col gap-1'>
                 <div className='w-full flex justify-between'>
                     <div className='flex'>

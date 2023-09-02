@@ -7,7 +7,7 @@ import { buttonVariants } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import WindowBar from '@/components/ui/window-bar';
 import { cn } from '@/lib/utils';
-import { All, Downloading, Settings } from '@/screens';
+import { All, Downloaded, Downloading, Settings } from '@/screens';
 
 const tabs = [
     {
@@ -19,6 +19,11 @@ const tabs = [
         name: 'Downloading',
         icon: <Icons.download />,
         screen: <Downloading />,
+    },
+    {
+        name: 'Downloaded',
+        icon: <Icons.check />,
+        screen: <Downloaded />,
     },
     {
         name: 'Settings',
@@ -107,7 +112,7 @@ function App() {
                             key={tab.name}
                             value={tab.name}
                             className={cn(
-                                'bg-background rounded-tl-lg w-screen h-screen'
+                                'bg-background rounded-tl-lg w-screen h-screen justify-center self-center '
                             )}
                         >
                             {tab.screen}

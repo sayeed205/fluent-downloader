@@ -1,3 +1,4 @@
+import AddDownloadForm from '@/components/add-download';
 import { Download } from '@/components/columns';
 import DownloadCards from '@/components/ui/download-cards';
 
@@ -28,8 +29,9 @@ const downloads: Download[] = [
 
 const All = () => {
     return (
-        <main className='flex flex-col justify-center gap-1 w-full mt-1 '>
-            {/* Buttons <Icons.check /> */}
+        <main className='flex flex-col justify-center gap-2 w-full items-center mt-2 self-center'>
+            {/* todo)) make this multi window later */}
+            <AddDownloadForm />
             {downloads.map(download => (
                 <DownloadCards
                     key={download.name}

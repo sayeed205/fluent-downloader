@@ -16,7 +16,11 @@
             "shell": {
                 "all": false,
                 "open": true,
-                "sidecar": true
+                "sidecar": true,
+                "scope": [
+                    { "name": "bin/yt-dlp", "sidecar": true, "args": true },
+                    { "name": "bin/aria2c", "sidecar": true, "args": true }
+                ]
             },
             "window": {
                 "all": false,
@@ -27,10 +31,17 @@
                 "minimize": true,
                 "unmaximize": true,
                 "unminimize": true,
-                "startDragging": true
+                "startDragging": true,
+                "create": true
             },
             "path": {
                 "all": true
+            },
+            "fs": {
+                "scope": ["$RESOURCE/*", "$APPCONFIG/*", "$APPDATA/*"],
+                "readDir": true,
+                "writeFile": true,
+                "readFile": true
             }
         },
         "bundle": {
@@ -44,13 +55,14 @@
                 "icons/icon.ico"
             ],
             "longDescription": "A simple download manager for Windows 11",
-            "resources": [],
+            "resources": ["conf/*"],
             "shortDescription": "Fluent Downloader",
             "windows": {
                 "certificateThumbprint": null,
                 "digestAlgorithm": "sha256",
                 "timestampUrl": ""
-            }
+            },
+            "externalBin": ["bin/yt-dlp", "bin/aria2c"]
         },
         "security": {
             "csp": null

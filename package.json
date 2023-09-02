@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@fluentui/react-icons": "2.0.199",
+    "@radix-ui/react-dialog": "^1.0.4",
     "@radix-ui/react-progress": "^1.0.3",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
