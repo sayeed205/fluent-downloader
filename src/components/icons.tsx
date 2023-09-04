@@ -14,6 +14,7 @@ import {
     Play20Filled,
     Settings20Filled,
     Subtract20Filled,
+    Video20Filled,
     WeatherMoon20Filled,
     WeatherSunny20Filled,
 } from '@fluentui/react-icons';
@@ -36,4 +37,5 @@ export const Icons = {
     plus: Add20Filled,
     pause: Pause20Filled,
     play: Play20Filled,
+    youtube: Video20Filled
 };

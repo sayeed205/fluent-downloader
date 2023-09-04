@@ -1,4 +1,3 @@
-import { resolveResource } from '@tauri-apps/api/path';
 import { useState } from 'react';
 
 import {
@@ -22,8 +21,8 @@ const AddDownloadForm = () => {
         // const output = await command.execute();
         // console.log(output);
         // await invoke('start_download', { url: url });
-        const path = await resolveResource('conf/aria.conf');
-        console.log(path);
+        // const path = await resolveResource('conf/aria.conf');
+        // console.log(path);
     };
 
     return (

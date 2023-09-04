@@ -6,12 +6,6 @@ use tauri::{Manager, WindowEvent};
 use window_shadows::set_shadow;
 use window_vibrancy::apply_mica;
 
-// Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! You've been greeted from Rust!", name)
-}
-
 fn main() {
     tauri::Builder::default()
         .setup(|app: &mut tauri::App| {
@@ -39,7 +33,7 @@ fn main() {
             println!("app_data {:?} ", app_data.to_str().unwrap());
 
             // run aria as daemon process with conf file
-            let (mut rx, child) = Command::new_sidecar("aria2c")
+            let (mut rx, _child) = Command::new_sidecar("aria2c")
                 .expect("failed to create `aria2c` binary command")
                 .args(&[
                     "--conf-path",
@@ -72,7 +66,7 @@ fn main() {
 
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![greet, start_download])
+        .invoke_handler(tauri::generate_handler![start_download])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
@@ -80,11 +74,6 @@ fn main() {
 #[tauri::command]
 async fn start_download(window: tauri::Window, url: String) {
     let (mut rx, mut child) = Command::new_sidecar("aria2c")
-        // .arg(url)
-        // .stdout(Stdio::piped())
-        // .stderr(Stdio::piped())
-        // .spawn()
-        // .expect("failed to spawn `yt-dlp` binary command");
         .expect("failed to create `yt-dlp` binary command")
         .args(&[url])
         .spawn()

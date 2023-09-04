@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import WindowBar from '@/components/ui/window-bar';
 import { cn } from '@/lib/utils';
 import { All, Downloaded, Downloading, Settings } from '@/screens';
+import YTDLP from './screens/ytdlp';
 
 const tabs = [
     {
@@ -29,6 +30,11 @@ const tabs = [
         name: 'Settings',
         icon: <Icons.settings />,
         screen: <Settings />,
+    },
+    {
+        name: 'YTDLP',
+        icon: <Icons.youtube />,
+        screen: <YTDLP />,
     },
 ];
 
