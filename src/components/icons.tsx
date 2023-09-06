@@ -7,6 +7,7 @@ import {
     ChevronRight20Filled,
     Circle20Regular,
     Dismiss20Filled,
+    Folder20Filled,
     Home20Filled,
     Laptop20Filled,
     Navigation20Filled,
@@ -37,5 +38,6 @@ export const Icons = {
     plus: Add20Filled,
     pause: Pause20Filled,
     play: Play20Filled,
-    youtube: Video20Filled
+    youtube: Video20Filled,
+    folder: Folder20Filled,
 };

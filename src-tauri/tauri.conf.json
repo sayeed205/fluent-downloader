@@ -17,9 +17,15 @@
                 "all": false,
                 "open": true,
                 "sidecar": true,
+                "execute": true,
                 "scope": [
                     { "name": "bin/yt-dlp", "sidecar": true, "args": true },
-                    { "name": "bin/aria2c", "sidecar": true, "args": true }
+                    { "name": "bin/aria2c", "sidecar": true, "args": true },
+                    {
+                        "name": "open-directory",
+                        "cmd": "explorer.exe",
+                        "args": true
+                    }
                 ]
             },
             "window": {
@@ -38,10 +44,8 @@
                 "all": true
             },
             "fs": {
-                "scope": ["$RESOURCE/*", "$APPCONFIG/*", "$APPDATA/*"],
-                "readDir": true,
-                "writeFile": true,
-                "readFile": true
+                "scope": ["**"],
+                "all": true
             }
         },
         "bundle": {

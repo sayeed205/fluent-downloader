@@ -1,5 +1,7 @@
-import Aria2 from '@/lib/aria2';
-import { Status } from '@/types';
+import { Command } from '@tauri-apps/api/shell';
+import { downloads } from 'aria2n/bin/types';
+
+import aria2 from '@/lib/aria2';
 import { Icons } from '../icons';
 import { Progress } from './progress';
 
@@ -14,19 +16,31 @@ import { Progress } from './progress';
 //     type: string;
 // };
 
-const DownloadCards = ({
-    props,
-    aria,
-}: {
-    props: Partial<Status>;
-    aria: Aria2;
-}) => {
+const DownloadCards = ({ props }: { props: downloads }) => {
+    // console.log(props);
     const pauseDownload = () => {
-        aria.pauseDownload(props.gid!);
+        aria2.pauseDownload(props.gid!);
     };
 
     const resumeDownload = () => {
-        aria.resumeDownload(props.gid!);
+        aria2.resumeDownload(props.gid!);
+    };
+
+    // const removeDownload = async () => {
+    //     const exist = await exists(props.path + props.name);
+    //     console.log(props.path + props.name);
+    //     console.log(exist);
+    //     if (exist) {
+    //         // removeDir(props.path + props.name, { recursive: true });
+    //         // removeFile(props.path + props.name);
+    //         // removeFile(props.path + props.name + '.aria2');
+    //     }
+    // };
+
+    const openDirectory = async () => {
+        console.log(props.path);
+        const command = new Command('open-directory', [props.path]);
+        command.execute();
     };
 
     return (
@@ -39,18 +53,13 @@ const DownloadCards = ({
                     <div className='flex'>
                         <img className='' src='/vite.svg' />{' '}
                         {/** todo)) need to make it dynamic */}
-                        <div className=''>
-                            {props.files && props.files[0].path}
-                        </div>
+                        <div className=''>{props.name}</div>
                     </div>
-                    <div className=''>{props?.gid}</div>
+                    <div className=''>{props.progress.toFixed(2) + '%'}</div>
                 </div>
                 <div className=' w-full'>
                     <Progress
-                        value={
-                            parseInt(props?.totalLength!) /
-                            parseInt(props?.completedLength!)
-                        }
+                        value={props.progress}
                         className='h-1 bg-red-400'
                     />
                 </div>
@@ -76,7 +85,14 @@ const DownloadCards = ({
                 )}
                 {/* <Icons.pause />
                 <Icons.play /> */}
-                <Icons.close />
+                {/* <Icons.close
+                    className='cursor-pointer'
+                    onClick={removeDownload}
+                /> */}
+                <Icons.folder
+                    className='cursor-pointer'
+                    onClick={openDirectory}
+                />
             </div>
         </div>
     );

@@ -1,3 +1,4 @@
+import { downloadDir } from '@tauri-apps/api/path';
 import { useState } from 'react';
 
 import {
@@ -11,18 +12,18 @@ import {
 import { Input } from './ui/input';
 
 import { Button } from '@/components/ui/button';
+import aria2 from '@/lib/aria2';
 import { Icons } from './icons';
 
 const AddDownloadForm = () => {
     const [url, setUrl] = useState('');
     const handleSubmit = async () => {
-        // console.log(url);
-        // const command = Command.sidecar('bin/yt-dlp', [url]);
-        // const output = await command.execute();
-        // console.log(output);
-        // await invoke('start_download', { url: url });
-        // const path = await resolveResource('conf/aria.conf');
-        // console.log(path);
+        const downloadDirPath = await downloadDir();
+        aria2.addUri(url, {
+            dir: downloadDirPath,
+        });
+
+        console.log(downloadDirPath);
     };
 
     return (
