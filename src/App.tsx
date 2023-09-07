@@ -1,133 +1,63 @@
-import { MotionConfig, motion } from 'framer-motion';
-import { useState } from 'react';
-import './App.css';
+import {
+    ActionFunction,
+    LoaderFunction,
+    RouterProvider,
+    createBrowserRouter,
+} from 'react-router-dom';
+import RootLayout from './layouts/root-layout';
 
-import { Icons } from '@/components/icons';
-import { buttonVariants } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import WindowBar from '@/components/ui/window-bar';
-import { cn } from '@/lib/utils';
-import { All, Downloaded, Downloading, Settings } from '@/screens';
-import YTDLP from './screens/ytdlp';
-
-const tabs = [
-    {
-        name: 'Home',
-        icon: <Icons.home className='' />,
-        screen: <All />,
-    },
-    {
-        name: 'Downloading',
-        icon: <Icons.download />,
-        screen: <Downloading />,
-    },
-    {
-        name: 'Downloaded',
-        icon: <Icons.check />,
-        screen: <Downloaded />,
-    },
-    {
-        name: 'Settings',
-        icon: <Icons.settings />,
-        screen: <Settings />,
-    },
-    {
-        name: 'YTDLP',
-        icon: <Icons.youtube />,
-        screen: <YTDLP />,
-    },
-];
-
-function App() {
-    const [activeTab, setActiveTab] = useState<string>(tabs[0].name);
-    const [isExpanded, setIsExpanded] = useState<boolean>(false);
-
-    return (
-        <main className='w-screen'>
-            <WindowBar />
-            <MotionConfig transition={{ duration: 0.3 }}>
-                <Tabs defaultValue={tabs[0].name} className='flex-row flex'>
-                    <TabsList className='flex flex-col h-full bg-transparent gap-1'>
-                        <motion.span
-                            onClick={() => setIsExpanded(!isExpanded)}
-                            style={{
-                                display: 'flex',
-                                gap: '0.5rem',
-                                flexDirection: 'row',
-                                alignSelf: 'flex-start',
-                            }}
-                            whileTap={{
-                                scale: '0.9',
-                            }}
-                            className={cn(
-                                buttonVariants({
-                                    variant: 'ghost',
-                                    size: 'icon',
-                                })
-                            )}
-                        >
-                            <Icons.menu />
-                        </motion.span>
-
-                        {tabs.map(tab => (
-                            <TabsTrigger
-                                key={tab.name}
-                                value={tab.name}
-                                onClick={() => setActiveTab(tab.name)}
-                                className={cn(
-                                    'py-[7px] px-3',
-                                    tab.name === 'Settings' &&
-                                        'absolute bottom-4'
-                                )}
-                            >
-                                <motion.span
-                                    style={{
-                                        display: 'flex',
-                                        gap: '1rem',
-                                        flexDirection: 'row',
-                                    }}
-                                    animate={{
-                                        width: isExpanded ? '285px' : '20px',
-                                    }}
-                                >
-                                    <div className={cn()}>{tab.icon}</div>
-                                    <motion.div
-                                        animate={{
-                                            opacity: isExpanded ? 1 : 0,
-                                        }}
-                                    >
-                                        {isExpanded && tab.name}
-                                    </motion.div>
-                                </motion.span>
-                                {activeTab === tab.name && (
-                                    <motion.div
-                                        layoutId='active-pill'
-                                        className='absolute inset-0 rounded-md w-[3px] h-4 bg-foreground top-1/4'
-                                        transition={{
-                                            type: 'spring',
-                                            duration: 0.5,
-                                        }}
-                                    />
-                                )}
-                            </TabsTrigger>
-                        ))}
-                    </TabsList>
-
-                    {tabs.map(tab => (
-                        <TabsContent
-                            key={tab.name}
-                            value={tab.name}
-                            className={cn(
-                                'bg-background rounded-tl-lg w-screen h-screen justify-center self-center '
-                            )}
-                        >
-                            {tab.screen}
-                        </TabsContent>
-                    ))}
-                </Tabs>
-            </MotionConfig>
-        </main>
-    );
+interface RouteCommon {
+    loader?: LoaderFunction;
+    action?: ActionFunction;
+    ErrorBoundary?: React.ComponentType<any>;
 }
+
+interface IRoute extends RouteCommon {
+    path: string;
+    Element: React.ComponentType<any>;
+}
+
+interface Pages {
+    [key: string]: {
+        default: React.ComponentType<any>;
+    } & RouteCommon;
+}
+
+const pages: Pages = import.meta.glob('./pages/**/*.tsx', { eager: true });
+
+const routes: IRoute[] = [];
+for (const path of Object.keys(pages)) {
+    const fileName = path.match(/\.\/pages\/(.*)\.tsx$/)?.[1];
+    if (!fileName) {
+        continue;
+    }
+
+    const normalizedPathName = fileName.includes('$')
+        ? fileName.replace('$', ':')
+        : fileName.replace(/\/index/, '');
+
+    routes.push({
+        path:
+            fileName === 'index' ? '/' : `/${normalizedPathName.toLowerCase()}`,
+        Element: pages[path].default,
+        loader: pages[path]?.loader as LoaderFunction | undefined,
+        action: pages[path]?.action as ActionFunction | undefined,
+        ErrorBoundary: pages[path]?.ErrorBoundary,
+    });
+}
+
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <RootLayout />,
+        children: routes.map(({ Element, ErrorBoundary, ...rest }) => ({
+            ...rest,
+            element: <Element />,
+            ...(ErrorBoundary && { errorElement: <ErrorBoundary /> }),
+        })),
+    },
+]);
+
+const App = () => <RouterProvider router={router} />;
 
 export default App;
