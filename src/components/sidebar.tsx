@@ -48,7 +48,7 @@ export default function SideBar() {
                         gap: '4px',
                         flexDirection: 'row',
                         alignSelf: 'flex-start',
-                        margin: '4px',
+                        margin: '10px',
                     }}
                     whileTap={{
                         scale: '0.9',
@@ -70,37 +70,50 @@ export default function SideBar() {
                             page.name === 'Settings' && 'absolute bottom-4'
                         )}
                     >
-                        <NavLink
-                            to={page.href}
-                            // <div
+                        <motion.div
                             className={cn(
-                                'hover:bg-background hover:text-foreground relative py-2 px-1 flex items-center text-center rounded-lg transition-all duration-300 gap-3',
-                                !isExpanded && 'pl-[10px]',
-                                isExpanded && 'w-[285px] pl-[10px]',
                                 location.pathname === page.href &&
-                                    'bg-background'
+                                    'bg-background',
+                                'rounded-lg'
                             )}
+                            animate={{
+                                width: isExpanded ? '285px' : '50px',
+                            }}
                         >
-                            <page.Icon />
-                            {/* <motion.div
-                                animate={{
-                                    opacity: isExpanded ? 1 : 0,
-                                }}
-                            > */}
-                            {isExpanded && page.name}
-                            {/* </motion.div> */}
-                            {location.pathname === page.href && (
+                            <NavLink
+                                to={page.href}
+                                // <div
+                                className={cn(
+                                    'hover:bg-background hover:text-foreground relative py-[6px] px-1 flex items-center text-center rounded-lg transition-all duration-300 gap-3',
+                                    'pl-[14px]',
+                                    isExpanded && 'w-[285px]'
+                                )}
+                            >
+                                <page.Icon />
                                 <motion.div
-                                    layoutId='active-pill'
-                                    className='absolute inset-0 rounded-md w-[3px] h-4 bg-foreground top-[calc(25%+1px)]'
-                                    transition={{
-                                        type: 'spring',
-                                        duration: 0.5,
+                                    animate={{
+                                        opacity: isExpanded ? 1 : 0,
                                     }}
-                                />
-                            )}
-                            {/* </div> */}
-                        </NavLink>
+                                >
+                                    {
+                                        // invisible character to keep the layout. Shit hack but works
+                                        !isExpanded && '‎'
+                                    }
+                                    {isExpanded && page.name}
+                                </motion.div>
+                                {location.pathname === page.href && (
+                                    <motion.div
+                                        layoutId='active-pill'
+                                        className='absolute inset-0 rounded-md w-[3px] h-4 bg-foreground top-[calc(25%+1px)]'
+                                        transition={{
+                                            type: 'spring',
+                                            duration: 0.5,
+                                        }}
+                                    />
+                                )}
+                                {/* </div> */}
+                            </NavLink>
+                        </motion.div>
                     </li>
                 ))}
             </ul>
