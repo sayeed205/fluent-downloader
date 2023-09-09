@@ -8,7 +8,7 @@ export default function RootLayout() {
             <WindowBar />
             <div className='flex flex-row'>
                 <SideBar />
-                <div className='bg-background rounded-tl-lg w-screen h-screen justify-center self-center'>
+                <div className='bg-background rounded-tl-lg w-screen h-screen justify-center self-center p-2'>
                     <Outlet />
                 </div>
             </div>

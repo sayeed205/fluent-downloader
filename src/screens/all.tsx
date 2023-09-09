@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import AddDownloadForm from '@/components/add-download';
 import DownloadCards from '@/components/ui/download-cards';
 import aria2 from '@/lib/aria2';
 
@@ -27,11 +26,10 @@ const All = () => {
     return (
         <main className='flex flex-col justify-center gap-2 w-full items-center mt-2 self-center'>
             {/* todo)) make this multi window later */}
-            <AddDownloadForm />
             {downloads.map(download => (
                 <DownloadCards
                     key={download.gid}
-                    props={download}
+                    {...download}
                     // aria={aria2}
                     // name={download.name}
                     // size={download.size}

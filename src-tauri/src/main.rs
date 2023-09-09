@@ -2,7 +2,8 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use tauri::api::process::{kill_children, Command, CommandEvent};
-use tauri::{Manager, WindowEvent};
+// use tauri::Runtime;
+use tauri::{AppHandle, Manager, WindowBuilder, WindowEvent, WindowUrl};
 use window_shadows::set_shadow;
 use window_vibrancy::apply_mica;
 
@@ -66,7 +67,7 @@ fn main() {
 
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![start_download])
+        .invoke_handler(tauri::generate_handler![start_download, add_task])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
@@ -92,4 +93,44 @@ async fn start_download(window: tauri::Window, url: String) {
             }
         }
     });
+}
+
+#[tauri::command]
+async fn add_task(app: AppHandle) -> Result<(), String> {
+    let result = WindowBuilder::new(
+        &app,
+        "new_task",
+        WindowUrl::App("windows/add-task/index.html".into()),
+    )
+    .fullscreen(false)
+    .transparent(true)
+    .visible(true)
+    .title("New Task")
+    .center()
+    .resizable(false)
+    .focused(true)
+    .inner_size(700 as f64, 300 as f64)
+    .decorations(false)
+    .build();
+    match result {
+        Ok(window) => {
+            #[cfg(target_os = "windows")]
+            apply_mica(&window, Some(true)).expect("Failed to apply mica");
+
+            #[cfg(any(windows, target_os = "windows"))]
+            set_shadow(&window, true).expect("Failed to set shadow");
+
+            window.minimize().unwrap();
+            window.unminimize().unwrap();
+
+            window.maximize().unwrap();
+            window.unmaximize().unwrap();
+            println!("Window Created Successfully!");
+            Ok(())
+        }
+        Err(err) => {
+            println!("Failed to Create Window {}", err);
+            Err("Failed to create Window".to_string())
+        }
+    }
 }

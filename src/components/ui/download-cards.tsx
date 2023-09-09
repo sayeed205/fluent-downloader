@@ -16,8 +16,7 @@ import { Progress } from './progress';
 //     type: string;
 // };
 
-const DownloadCards = ({ props }: { props: downloads }) => {
-    // console.log(props);
+const DownloadCards = (props: downloads) => {
     const pauseDownload = () => {
         aria2.pauseDownload(props.gid!);
     };
@@ -46,12 +45,12 @@ const DownloadCards = ({ props }: { props: downloads }) => {
     return (
         <div
             // key={props./}
-            className='bg-background w-[calc(100%-1rem)]  align-middle self-center rounded-lg flex justify-between gap-4 px-8 h-28 items-center'
+            className='bg-background w-[calc(100%-2px)]  align-middle self-center rounded-lg flex justify-between gap-4 px-8 h-28 items-center'
         >
             <div className='flex w-full flex-col gap-1'>
                 <div className='w-full flex justify-between'>
                     <div className='flex'>
-                        <img className='' src='/vite.svg' />{' '}
+                        <img className='' src='../../assets/react.svg' />{' '}
                         {/** todo)) need to make it dynamic */}
                         <div className=''>{props.name}</div>
                     </div>

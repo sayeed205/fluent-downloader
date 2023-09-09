@@ -22,7 +22,7 @@ const controlButtons = [
     },
 ];
 
-export default function WindowBar() {
+export default function WindowBar({ muted }: { muted?: string[] }) {
     const [isMaximized, setIsMaximized] = useState<boolean>(false);
 
     const handleClick = (name: string) => {
@@ -53,8 +53,15 @@ export default function WindowBar() {
                     className='flex items-center align-middle text-center'
                 >
                     <div
-                        className={cn(buttonVariants({ variant: 'ghost' }))} // todo)) Need to add bg-red for close button while hovered
-                        onClick={() => handleClick(button.name)}
+                        className={cn(
+                            buttonVariants({ variant: 'ghost' }),
+                            muted?.includes(button.name) &&
+                                'text-gray-500 hover:text-gray-500 bg-transparent hover:bg-transparent'
+                        )} // todo)) Need to add bg-red for close button while hovered
+                        onClick={() => {
+                            muted?.includes(button.name) ||
+                                handleClick(button.name);
+                        }}
                     >
                         {isMaximized && button.name === 'maximize' ? (
                             <Icons.restore />
