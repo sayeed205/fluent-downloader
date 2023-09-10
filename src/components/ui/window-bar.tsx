@@ -1,5 +1,3 @@
-'use client';
-
 import { appWindow } from '@tauri-apps/api/window';
 import { useState } from 'react';
 
