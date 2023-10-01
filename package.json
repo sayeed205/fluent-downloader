@@ -9,6 +9,7 @@
         "preview": "vite preview",
         "tauri": "tauri"
     },
+    "license": "MIT",
     "dependencies": {
         "@fluentui/react-icons": "2.0.199",
         "@radix-ui/react-dialog": "^1.0.4",
